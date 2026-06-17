@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Create all 12 public-facing pages: index.php, about.php, services.php, plans.php, trainers.php, classes.php, gallery.php, blog.php, post.php, contact.php, thank-you.php, and sitemap.php/robots.php. Each page includes header.php and footer.php, loads SEO dynamically, and displays content from the database.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create index.php (Home) with all sections: hero section with dynamic heading/subheading/buttons, trust badges, about preview, services grid, membership plans cards, trainers showcase, classes schedule, gallery preview, transformation section, testimonials carousel/grid, free trial CTA, FAQ accordion, and final CTA section.",
     "Create about.php with dynamic about content from admin, gym story section, mission/vision, and why choose us section.",
@@ -34,5 +34,5 @@
     "Verify index.php contains all required sections"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 13 public-facing PHP files created and pass php -l syntax check. Pages: index.php (full home with hero, trust badges, about, services, plans, trainers, classes, gallery, transformations, testimonials, free trial form, FAQ accordion, final CTA), about.php, services.php, plans.php, trainers.php, classes.php, gallery.php (with category filter and lightbox), blog.php, post.php (with related posts and blog SEO meta override), contact.php (with contact form saving to enquiries), thank-you.php, sitemap.php (XML sitemap), robots.php (dynamic robots.txt). Free trial form on index.php saves to enquiries with type free_trial. Contact form saves with type contact. Both redirect to thank-you.php on success."
 }
