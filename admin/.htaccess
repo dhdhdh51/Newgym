@@ -1,0 +1,22 @@
+# ============================================================
+# Admin .htaccess - Additional Security for Admin Panel
+# Apache 2.4 compatible - Shared hosting safe
+# ============================================================
+
+# ----------------------------------------------------------
+# Protect admin/includes directory from direct access
+# ----------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block direct access to includes directory
+    RewriteRule ^includes/ - [F,L]
+</IfModule>
+
+# ----------------------------------------------------------
+# Set X-Frame-Options DENY for admin pages
+# Prevents admin pages from being embedded in iframes (clickjacking protection)
+# ----------------------------------------------------------
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "DENY"
+</IfModule>
