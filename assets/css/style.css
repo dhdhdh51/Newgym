@@ -23,30 +23,30 @@
 
     /* Semantic colors — CONSUME admin vars with maroon fallbacks.
        Do NOT declare --primary-color / --secondary-color / --button-color here. */
-    --primary: var(--primary-color, #7B1E2B);
-    --btn: var(--button-color, #7B1E2B);
-    --secondary: var(--secondary-color, #2A2D31);
+    --primary: var(--primary-color, #22C55E);
+    --btn: var(--button-color, #22C55E);
+    --secondary: var(--secondary-color, #111827);
 
-    --primary-dark: color-mix(in srgb, var(--primary) 82%, #000);
-    --primary-darker: color-mix(in srgb, var(--primary) 65%, #000);
-    --primary-soft: color-mix(in srgb, var(--primary) 10%, #fff);
-    --primary-soft-2: color-mix(in srgb, var(--primary) 18%, #fff);
-    --btn-dark: color-mix(in srgb, var(--btn) 82%, #000);
+    --primary-dark: #16A34A;
+    --primary-darker: #15803D;
+    --primary-soft: color-mix(in srgb, var(--primary) 16%, var(--surface));
+    --primary-soft-2: color-mix(in srgb, var(--primary) 30%, var(--surface));
+    --btn-dark: #16A34A;
 
     /* Gradients */
-    --grad: linear-gradient(135deg, var(--primary), #A52234);
-    --grad-deep: linear-gradient(135deg, #4A0E18, #7B1E2B);
+    --grad: linear-gradient(135deg, var(--primary), #16A34A);
+    --grad-deep: linear-gradient(135deg, #0B0F14, #1F2937);
 
-    /* Surfaces & backgrounds */
-    --bg: #F7F8FA;
-    --surface: #FFFFFF;
-    --surface-2: #FBF9FA;
-    --footer-bg: #1A1416;
+    /* Surfaces & backgrounds (dark theme) */
+    --bg: #0B0F14;
+    --surface: #111827;
+    --surface-2: #0E1622;
+    --footer-bg: #090C11;
 
     /* Text */
-    --text: #16181B;
-    --text-muted: #5B636B;
-    --border: #E7E9ED;
+    --text: #FFFFFF;
+    --text-muted: #9CA3AF;
+    --border: #1F2937;
 
     /* States */
     --success: #1E9E5A;
@@ -62,9 +62,9 @@
     --r-pill: 999px;
 
     /* Shadows (soft, low alpha) */
-    --sh-sm: 0 1px 2px rgba(16, 24, 40, .06);
-    --sh-md: 0 6px 18px rgba(16, 24, 40, .08);
-    --sh-lg: 0 18px 40px rgba(16, 24, 40, .12);
+    --sh-sm: 0 1px 2px rgba(0, 0, 0, .35);
+    --sh-md: 0 8px 24px rgba(0, 0, 0, .45);
+    --sh-lg: 0 22px 48px rgba(0, 0, 0, .6);
 
     /* Layout */
     --container: 1200px;
@@ -262,7 +262,7 @@ textarea:focus-visible,
 
 .btn-primary:hover {
     color: #fff;
-    background-image: linear-gradient(135deg, var(--btn-dark), var(--maroon-accent));
+    background-image: linear-gradient(135deg, var(--btn-dark), #15803D);
 }
 
 .btn-outline {
@@ -310,7 +310,7 @@ textarea:focus-visible,
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, .82);
+    background: rgba(11, 15, 20, .72);
     backdrop-filter: saturate(160%) blur(12px);
     -webkit-backdrop-filter: saturate(160%) blur(12px);
     border-bottom: 1px solid var(--border);
@@ -319,7 +319,7 @@ textarea:focus-visible,
 }
 
 .site-header.scrolled {
-    background: rgba(255, 255, 255, .96);
+    background: rgba(11, 15, 20, .94);
     box-shadow: var(--sh-md);
 }
 
@@ -475,7 +475,7 @@ body.nav-open {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(74, 14, 24, .92), rgba(20, 20, 22, .78));
+    background: linear-gradient(135deg, rgba(11, 15, 20, .9), rgba(17, 24, 39, .74));
     z-index: 1;
 }
 
@@ -781,7 +781,7 @@ body.nav-open {
     font-size: .75rem;
     font-weight: 700;
     color: var(--success);
-    background: color-mix(in srgb, var(--success) 12%, #fff);
+    background: color-mix(in srgb, var(--success) 12%, var(--surface));
     padding: 3px 10px;
     border-radius: var(--r-pill);
 }
@@ -1055,7 +1055,7 @@ body.nav-open {
     padding: 16px;
     text-align: center;
     color: #fff;
-    background: linear-gradient(135deg, rgba(74, 14, 24, .85), rgba(123, 30, 43, .7));
+    background: linear-gradient(135deg, rgba(11, 15, 20, .82), rgba(34, 197, 94, .5));
     opacity: 0;
     transition: opacity var(--t);
 }
@@ -1456,10 +1456,11 @@ textarea:user-invalid {
    ========================================================================== */
 .final-cta-section,
 .cta-section {
-    background: var(--grad);
+    background: radial-gradient(900px 380px at 50% 0%, color-mix(in srgb, var(--primary) 16%, #0B0F14), #0B0F14);
     color: #fff;
     text-align: center;
     padding-block: clamp(48px, 8vw, 96px);
+    border-block: 1px solid var(--border);
 }
 
 .final-cta-content,
@@ -1491,18 +1492,19 @@ textarea:user-invalid {
     justify-content: center;
 }
 
-/* On a maroon band, primary button should read as white/inverse */
+/* On a dark CTA band, the primary button keeps its green identity */
 .final-cta-section .btn-primary,
 .cta-section .btn-primary {
-    background: #fff;
-    background-image: none;
-    color: var(--primary);
+    background: var(--btn);
+    background-image: var(--grad);
+    color: #fff;
 }
 
 .final-cta-section .btn-primary:hover,
 .cta-section .btn-primary:hover {
-    background: rgba(255, 255, 255, .9);
-    color: var(--primary-dark);
+    background: var(--btn-dark);
+    background-image: linear-gradient(135deg, var(--btn-dark), #15803D);
+    color: #fff;
 }
 
 .final-cta-section .btn-outline,
@@ -1992,7 +1994,7 @@ textarea:user-invalid {
     width: 96px;
     height: 96px;
     border-radius: 50%;
-    background: color-mix(in srgb, var(--success) 14%, #fff);
+    background: color-mix(in srgb, var(--success) 14%, var(--surface));
     color: var(--success);
     font-size: 3rem;
     margin-bottom: 24px;
@@ -2067,7 +2069,7 @@ textarea:user-invalid {
 }
 
 .footer-contact i {
-    color: var(--maroon-light);
+    color: var(--primary);
     margin-top: 4px;
     width: 18px;
     text-align: center;
@@ -2213,23 +2215,23 @@ textarea:user-invalid {
 
 .alert-success {
     border-left-color: var(--success);
-    background: color-mix(in srgb, var(--success) 10%, #fff);
+    background: color-mix(in srgb, var(--success) 10%, var(--surface));
 }
 
 .alert-error,
 .alert-danger {
     border-left-color: var(--danger);
-    background: color-mix(in srgb, var(--danger) 10%, #fff);
+    background: color-mix(in srgb, var(--danger) 10%, var(--surface));
 }
 
 .alert-info {
     border-left-color: var(--info);
-    background: color-mix(in srgb, var(--info) 10%, #fff);
+    background: color-mix(in srgb, var(--info) 10%, var(--surface));
 }
 
 .alert-warning {
     border-left-color: var(--warning);
-    background: color-mix(in srgb, var(--warning) 12%, #fff);
+    background: color-mix(in srgb, var(--warning) 12%, var(--surface));
 }
 
 /* ==========================================================================
@@ -2292,7 +2294,7 @@ textarea:user-invalid {
    28. SKELETONS
    ========================================================================== */
 .skeleton {
-    background: linear-gradient(90deg, #eef0f3 25%, #f6f7f9 37%, #eef0f3 63%);
+    background: linear-gradient(90deg, #161F2E 25%, #1F2937 37%, #161F2E 63%);
     background-size: 400% 100%;
     border-radius: var(--r-sm);
     animation: shimmer 1.4s ease infinite;
@@ -2302,7 +2304,7 @@ textarea:user-invalid {
     height: 12px;
     margin-bottom: 8px;
     border-radius: var(--r-pill);
-    background: linear-gradient(90deg, #eef0f3 25%, #f6f7f9 37%, #eef0f3 63%);
+    background: linear-gradient(90deg, #161F2E 25%, #1F2937 37%, #161F2E 63%);
     background-size: 400% 100%;
     animation: shimmer 1.4s ease infinite;
 }
@@ -2310,7 +2312,7 @@ textarea:user-invalid {
 .skeleton-card {
     height: 200px;
     border-radius: var(--r-lg);
-    background: linear-gradient(90deg, #eef0f3 25%, #f6f7f9 37%, #eef0f3 63%);
+    background: linear-gradient(90deg, #161F2E 25%, #1F2937 37%, #161F2E 63%);
     background-size: 400% 100%;
     animation: shimmer 1.4s ease infinite;
 }

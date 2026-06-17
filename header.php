@@ -34,9 +34,9 @@ $customHeaderScripts = $seoData['custom_header_scripts'] ?? '';
 $gymName = $allSettings['gym_name'] ?? 'Iron Pulse Fitness';
 $logo = $allSettings['logo'] ?? '';
 $favicon = $allSettings['favicon'] ?? '';
-$primaryColor = $allSettings['primary_color'] ?? '#e63946';
-$secondaryColor = $allSettings['secondary_color'] ?? '#1d1d1d';
-$buttonColor = $allSettings['button_color'] ?? '#e63946';
+$primaryColor = $allSettings['primary_color'] ?? '#22C55E';
+$secondaryColor = $allSettings['secondary_color'] ?? '#111827';
+$buttonColor = $allSettings['button_color'] ?? '#22C55E';
 $whatsappNumber = $allSettings['whatsapp_number'] ?? '';
 $phoneNumber = $allSettings['phone_number'] ?? '';
 ?>
@@ -149,7 +149,7 @@ $phoneNumber = $allSettings['phone_number'] ?? '';
             <div class="container">
                 <a href="index.php" class="nav-brand">
                     <?php if ($logo): ?>
-                    <img src="<?php echo e($logo); ?>" alt="<?php echo e($gymName); ?>" class="nav-logo">
+                    <img src="<?php echo e($logo); ?>" alt="<?php echo e($gymName); ?>" class="nav-logo" onerror="this.style.display='none'">
                     <?php endif; ?>
                     <span class="nav-brand-text"><?php echo e($gymName); ?></span>
                 </a>
