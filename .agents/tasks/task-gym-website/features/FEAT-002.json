@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Create all 12 public-facing pages: index.php, about.php, services.php, plans.php, trainers.php, classes.php, gallery.php, blog.php, post.php, contact.php, thank-you.php, and sitemap.php/robots.php. Each page includes header.php and footer.php, loads SEO dynamically, and displays content from the database.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create index.php (Home) with all sections: hero section with dynamic heading/subheading/buttons, trust badges, about preview, services grid, membership plans cards, trainers showcase, classes schedule, gallery preview, transformation section, testimonials carousel/grid, free trial CTA, FAQ accordion, and final CTA section.",
     "Create about.php with dynamic about content from admin, gym story section, mission/vision, and why choose us section.",
