@@ -1,0 +1,35 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Create the database schema, configuration, and core includes (config.php, functions.php, header.php, footer.php, database.sql) that all other files depend on.",
+  "status": "in_progress",
+  "steps": [
+    "Create database.sql with all 11 tables (admin_users, site_settings, seo_settings, membership_plans, trainers, classes, gallery, transformations, testimonials, enquiries, blog_posts) including all columns as specified. Insert default admin user (admin/admin123 using bcrypt hash), all default site settings, default SEO settings for all pages, default membership plans (Basic/Standard/Premium), default classes, and default FAQ data.",
+    "Create config.php with PDO database connection, session_start, error reporting config, base URL detection, and CSRF token generation function.",
+    "Create functions.php with helper functions: getSetting(), getSeoForPage(), sanitizeInput(), validateImage(), generateSlug(), formatDate(), isLoggedIn(), requireLogin(), verifyCsrfToken(), getEnquiryCount(), redirect(), and any other utility functions needed across the site.",
+    "Create header.php with dynamic HTML head (loading SEO from database), responsive navigation with mobile hamburger menu, dynamic logo/gym name, menu items (Home, About, Services, Plans, Trainers, Classes, Gallery, Blog, Contact), CTA button (Book Free Trial), sticky WhatsApp button, and sticky call button on mobile.",
+    "Create footer.php with footer sections (about, quick links, contact info, social links), dynamic footer text from admin, copyright, closing body/html tags, and JavaScript includes.",
+    "Create assets/css/style.css with the complete premium dark theme stylesheet - CSS custom properties for colors (loaded from PHP inline style in header), mobile-first responsive design, all component styles for cards, buttons, forms, navigation, hero, sections, grid layouts, lightbox, FAQ accordion, pricing cards, trainer cards, testimonial cards, hover effects, animations, sticky buttons, and media queries.",
+    "Create assets/js/main.js with mobile menu toggle, smooth scrolling, FAQ accordion, lightbox for gallery, form validation, scroll animations, sticky header behavior, and any other interactive features.",
+    "Create the uploads/ directory with a .htaccess file to prevent PHP execution and an index.html placeholder.",
+    "Create assets/images/ directory with an index.html placeholder."
+  ],
+  "acceptance_criteria": [
+    "database.sql is valid SQL that can be imported into MySQL without errors",
+    "config.php establishes a PDO connection and starts sessions",
+    "functions.php provides all utility functions used across the site",
+    "header.php renders a complete responsive navigation with dynamic content",
+    "footer.php renders a complete footer with dynamic content",
+    "style.css provides complete styling for all components with CSS variables for theming",
+    "main.js provides all client-side interactivity",
+    "All PHP files pass php -l syntax check"
+  ],
+  "verification": [
+    "Run php -l on config.php, functions.php, header.php, footer.php to verify no syntax errors",
+    "Run mysql validation: cat database.sql | head -100 to verify proper SQL structure",
+    "Verify style.css is non-empty and contains CSS custom properties for theming",
+    "Verify main.js is non-empty and contains event listeners"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

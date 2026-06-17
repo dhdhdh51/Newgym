@@ -1,0 +1,7 @@
+{
+  "task_id": "task-gym-website",
+  "task_description": "Create a complete fully rebrandable professional gym and fitness website with admin panel using PHP 8+, MySQL, HTML5, CSS3, and JavaScript. No frameworks. Premium dark theme, mobile-first responsive design, SEO friendly, shared hosting compatible.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null
+}

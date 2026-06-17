@@ -1,0 +1,44 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Create the complete admin panel with login system, dashboard, site settings, SEO manager, and all CRUD pages for managing membership plans, trainers, classes, gallery, testimonials, transformations, enquiries, and blog posts.",
+  "status": "pending",
+  "steps": [
+    "Create admin/includes/admin-header.php with admin panel HTML head, sidebar navigation (Dashboard, Settings, SEO Manager, Plans, Trainers, Classes, Gallery, Testimonials, Transformations, Enquiries, Blog, Logout), top bar with admin info, and responsive admin layout.",
+    "Create admin/includes/admin-footer.php with closing HTML, admin-specific JavaScript, and any admin panel scripts.",
+    "Create admin/login.php with login form, authentication using password_verify against admin_users table, session creation, CSRF protection, and redirect to dashboard on success.",
+    "Create admin/logout.php that destroys session and redirects to login.",
+    "Create admin/dashboard.php showing stats cards (total enquiries, new enquiries, trial bookings, total plans, total trainers, total classes, total blog posts), recent enquiries table, and quick action buttons.",
+    "Create admin/settings.php with a comprehensive form to update all site_settings: gym name, logo, favicon, tagline, hero heading, hero subheading, hero image, about content, primary/secondary/button colors, WhatsApp number, phone, email, address, Google Map embed, business hours, social links, footer text, analytics codes. Handle file uploads for logo/favicon/hero image.",
+    "Create admin/seo-manager.php listing all pages with their current SEO settings, with edit functionality for each page's full SEO fields (meta title, description, keywords, OG tags, Twitter cards, schema JSON, custom scripts, etc.).",
+    "Create admin/plans.php listing all membership plans with edit/delete/toggle actions. Create admin/plan-add.php with form for adding new plan (name, prices, features, highlight, active status). Create admin/plan-edit.php with pre-filled form for editing existing plan.",
+    "Create admin/trainers.php listing all trainers with edit/delete/toggle actions. Create admin/trainer-add.php with form for adding trainer (name, photo, specialty, experience, bio, Instagram, active status). Create admin/trainer-edit.php with pre-filled edit form.",
+    "Create admin/classes.php listing all classes. Create admin/class-add.php for adding class (name, trainer, time, days, duration, description, image, active status). Create admin/class-edit.php for editing classes.",
+    "Create admin/gallery.php with image grid, upload/add form (title, image URL or upload, category), and delete functionality.",
+    "Create admin/testimonials.php with list view, add form (client name, photo, rating, review, city), edit and delete functionality.",
+    "Create admin/transformations.php with list view, add form (member name, before/after images, duration, description), edit and delete.",
+    "Create admin/enquiries.php listing all enquiries with filtering (contact/free_trial), search, status marking (contacted/pending), notes field, delete, and CSV export functionality.",
+    "Create admin/blog-manager.php listing all blog posts with status. Create admin/blog-add.php with full blog form (title, slug, category, author, featured image, content, SEO fields, status draft/published). Create admin/blog-edit.php for editing posts."
+  ],
+  "acceptance_criteria": [
+    "All admin PHP files pass php -l syntax check",
+    "admin/login.php authenticates using password_verify and creates session",
+    "All admin pages call requireLogin() to protect against unauthorized access",
+    "All forms use CSRF tokens for protection",
+    "All database operations use PDO prepared statements",
+    "admin/settings.php handles file uploads with proper validation (jpg, jpeg, png, webp only)",
+    "admin/enquiries.php supports filtering, search, status update, notes, and CSV export",
+    "admin/seo-manager.php allows editing all SEO fields for every page",
+    "Dashboard shows accurate counts from database",
+    "All CRUD operations (add, edit, delete) work for plans, trainers, classes, gallery, testimonials, transformations, and blog posts"
+  ],
+  "verification": [
+    "Run php -l on all admin PHP files to verify no syntax errors",
+    "Verify admin/login.php uses password_verify and session management",
+    "Verify all admin pages include requireLogin() check",
+    "Verify all forms contain CSRF token hidden fields",
+    "Verify all SQL queries use prepared statements (no direct variable interpolation in queries)"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

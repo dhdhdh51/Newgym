@@ -1,0 +1,38 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Create all 12 public-facing pages: index.php, about.php, services.php, plans.php, trainers.php, classes.php, gallery.php, blog.php, post.php, contact.php, thank-you.php, and sitemap.php/robots.php. Each page includes header.php and footer.php, loads SEO dynamically, and displays content from the database.",
+  "status": "pending",
+  "steps": [
+    "Create index.php (Home) with all sections: hero section with dynamic heading/subheading/buttons, trust badges, about preview, services grid, membership plans cards, trainers showcase, classes schedule, gallery preview, transformation section, testimonials carousel/grid, free trial CTA, FAQ accordion, and final CTA section.",
+    "Create about.php with dynamic about content from admin, gym story section, mission/vision, and why choose us section.",
+    "Create services.php listing all services from database in card grid format with icons/descriptions.",
+    "Create plans.php showing all active membership plans with pricing cards (monthly/quarterly/yearly), features list, highlight for featured plan, and enquiry CTA buttons.",
+    "Create trainers.php showing trainer profile cards with photo, name, specialty, experience, bio, and Instagram link.",
+    "Create classes.php showing class schedule in a clean layout with class name, trainer, time, days, duration, and description.",
+    "Create gallery.php with filterable image grid (by category) and lightbox functionality for viewing full-size images.",
+    "Create blog.php with blog listing showing title, featured image, excerpt, author, date, and category. Include pagination if needed.",
+    "Create post.php for single blog posts with full content, author info, date, breadcrumbs, related posts section, and SEO meta from blog_posts table.",
+    "Create contact.php with contact information (address, phone, WhatsApp, email, business hours), Google Map embed, and contact form (name, phone, email, message) that saves to enquiries table.",
+    "Create thank-you.php with success message after form submission, links back to homepage and other pages.",
+    "Create sitemap.php that generates dynamic XML sitemap with all pages and blog posts. Create robots.php that outputs robots.txt content dynamically."
+  ],
+  "acceptance_criteria": [
+    "All 12+ public page files exist and pass php -l syntax check",
+    "index.php contains all specified home page sections (hero, trust badges, about, services, plans, trainers, classes, gallery, transformations, testimonials, free trial CTA, FAQ, final CTA)",
+    "Contact form processes submissions and saves to enquiries table",
+    "Free trial form (on index.php or modal) saves to enquiries table with enquiry_type='free_trial'",
+    "Blog listing and single post pages load dynamic content",
+    "All pages include proper SEO meta tags loaded from database",
+    "sitemap.php generates valid XML sitemap",
+    "Gallery page has category filtering and lightbox"
+  ],
+  "verification": [
+    "Run php -l on all public PHP files to verify no syntax errors",
+    "Verify each file includes header.php and footer.php",
+    "Verify contact.php has form processing logic with PDO prepared statements",
+    "Verify index.php contains all required sections"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
