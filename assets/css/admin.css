@@ -1,0 +1,736 @@
+/* ==========================================================================
+   GYM ADMIN PANEL — Premium Light "SaaS Dashboard" Theme (STANDALONE)
+   --------------------------------------------------------------------------
+   This stylesheet is fully self-contained. It ships its own reset and design
+   tokens so the public site stylesheet (assets/css/style.css) does not bleed
+   into the admin UI. Mobile-first. Maroon palette.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+    /* Brand / maroon palette */
+    --primary: #7B1E2B;
+    --primary-dark: #5E1620;
+    --primary-accent: #A52234;
+    --primary-soft: #F4E6E8;
+
+    /* Surfaces & backgrounds */
+    --bg: #F1F3F7;
+    --surface: #FFFFFF;
+    --surface-2: #F8F9FB;
+    --sidebar-bg: #1E1A1B;
+    --topbar: #FFFFFF;
+
+    /* Text */
+    --text: #16181B;
+    --text-muted: #6B7280;
+    --border: #E6E8EC;
+
+    /* Status colors */
+    --success: #1E9E5A;
+    --danger: #DC3545;
+    --warning: #E5A100;
+    --info: #2D7FF9;
+
+    /* Radii */
+    --r-sm: 8px;
+    --r-md: 12px;
+    --r-lg: 16px;
+
+    /* Shadows (soft, low-alpha) */
+    --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.05);
+    --shadow-md: 0 4px 12px rgba(16, 24, 40, 0.08);
+    --shadow-lg: 0 12px 28px rgba(16, 24, 40, 0.12);
+
+    /* Maroon gradient (reused on brand, buttons, active nav) */
+    --grad-primary: linear-gradient(135deg, var(--primary), var(--primary-accent));
+
+    /* Layout */
+    --sidebar-w: 264px;
+
+    /* Fonts */
+    --font-body: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-head: 'Oswald', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET (scoped to nothing global; standalone)
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    font-family: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   3. APP LAYOUT
+   -------------------------------------------------------------------------- */
+.admin-panel {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   4. SIDEBAR
+   -------------------------------------------------------------------------- */
+.admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-w);
+    height: 100%;
+    background: var(--sidebar-bg);
+    color: #E8E6E7;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    /* Mobile-first: off-canvas by default */
+    transform: translateX(-100%);
+}
+
+/* Open state (toggled via .active by topbar button / footer JS) */
+.admin-sidebar.active {
+    transform: translateX(0);
+    box-shadow: var(--shadow-lg);
+}
+
+.admin-sidebar .sidebar-brand {
+    padding: 22px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+}
+
+.admin-sidebar .sidebar-brand h2 {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.admin-sidebar .sidebar-brand h2 i {
+    color: var(--primary-accent);
+}
+
+.admin-sidebar .sidebar-brand small {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(232, 230, 231, 0.5);
+}
+
+.admin-sidebar .sidebar-nav {
+    padding: 14px 0;
+}
+
+.admin-sidebar .sidebar-nav li {
+    margin: 2px 0;
+}
+
+.admin-sidebar .sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 20px;
+    margin-right: 12px;
+    color: rgba(232, 230, 231, 0.72);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 0 999px 999px 0;
+    border-left: 3px solid transparent;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.admin-sidebar .sidebar-nav li a i {
+    width: 22px;
+    text-align: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+.admin-sidebar .sidebar-nav li a:hover,
+.admin-sidebar .sidebar-nav li a.active {
+    background: var(--grad-primary);
+    color: #fff;
+    border-left-color: var(--primary-soft);
+}
+
+.admin-sidebar .sidebar-nav li a:focus-visible {
+    outline: 2px solid var(--primary-accent);
+    outline-offset: -2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. MAIN CONTENT WRAPPER
+   -------------------------------------------------------------------------- */
+.admin-content {
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    /* Mobile-first: no offset (sidebar is off-canvas) */
+    margin-left: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. TOPBAR
+   -------------------------------------------------------------------------- */
+.admin-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--topbar);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-topbar h3 {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.3px;
+    color: var(--text);
+    margin: 0 auto 0 0;
+    flex: 1;
+}
+
+.admin-topbar .toggle-sidebar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: var(--r-sm);
+    font-size: 1.15rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.admin-topbar .toggle-sidebar:hover {
+    background: var(--surface-2);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.admin-topbar .toggle-sidebar:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.admin-topbar .admin-user {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+.admin-topbar .admin-user strong {
+    color: var(--text);
+}
+
+.admin-topbar .admin-user a {
+    color: var(--primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.admin-topbar .admin-user a:hover {
+    color: var(--primary-accent);
+}
+
+.admin-topbar .admin-user a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   7. MAIN PAGE AREA
+   -------------------------------------------------------------------------- */
+.admin-main {
+    padding: clamp(18px, 3vw, 32px);
+}
+
+/* --------------------------------------------------------------------------
+   8. CARDS
+   -------------------------------------------------------------------------- */
+.admin-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: clamp(18px, 3vw, 26px);
+    margin-bottom: 22px;
+    box-shadow: var(--shadow-sm);
+}
+
+/* --------------------------------------------------------------------------
+   9. SECTION TITLE (compact admin variant)
+   -------------------------------------------------------------------------- */
+.section-title {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.3px;
+    color: var(--text);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   10. QUICK ACTIONS
+   -------------------------------------------------------------------------- */
+.quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   11. BUTTONS
+   -------------------------------------------------------------------------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 18px;
+    min-height: 40px;
+    border: 1px solid transparent;
+    border-radius: var(--r-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn:disabled,
+.btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Variants */
+.btn-primary {
+    background: var(--grad-primary);
+    color: #fff;
+    border-color: transparent;
+}
+
+.btn-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-success {
+    background: var(--success);
+    color: #fff;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: #fff;
+}
+
+/* Small buttons */
+.btn-sm {
+    padding: 6px 12px;
+    min-height: 34px;
+    font-size: 0.8rem;
+    gap: 6px;
+}
+
+/* Icon-only small buttons in tables become neat square chips */
+.admin-table .btn-sm {
+    min-width: 34px;
+    padding: 6px 10px;
+}
+
+/* --------------------------------------------------------------------------
+   12. TABLES
+   -------------------------------------------------------------------------- */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Keep columns readable; wrapper has overflow-x:auto for small screens */
+    min-width: 560px;
+}
+
+.admin-table thead th {
+    padding: 13px 14px;
+    text-align: left;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+}
+
+.admin-table tbody td {
+    padding: 13px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tbody tr {
+    transition: background 0.18s ease;
+}
+
+.admin-table tbody tr:hover {
+    background: #FBF5F6;
+}
+
+/* Action button spacing inside table cells */
+.admin-table td .btn + .btn {
+    margin-left: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   13. FORMS
+   -------------------------------------------------------------------------- */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 11px 14px;
+    min-height: 42px;
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    background: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.92rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form-group input[type="color"] {
+    height: 46px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+/* Checkboxes sit inline beside their label text */
+.form-group input[type="checkbox"] {
+    width: auto;
+    min-height: 0;
+    margin-right: 8px;
+    vertical-align: middle;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.form-group input[type="checkbox"] + * {
+    vertical-align: middle;
+}
+
+/* Labels wrapping a checkbox should read as a single inline row */
+.form-group label > input[type="checkbox"] {
+    margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   14. ALERTS
+   -------------------------------------------------------------------------- */
+.alert {
+    padding: 14px 18px;
+    border-radius: var(--r-sm);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+    border-left-width: 4px;
+}
+
+.alert-success {
+    background: #E6F6EC;
+    color: #14663A;
+    border-color: var(--success);
+}
+
+.alert-danger {
+    background: #FCEBEC;
+    color: #8A1C26;
+    border-color: var(--danger);
+}
+
+/* --------------------------------------------------------------------------
+   15. BADGES
+   -------------------------------------------------------------------------- */
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+}
+
+.badge-success {
+    background: #E6F6EC;
+    color: #14663A;
+}
+
+.badge-danger {
+    background: #FCEBEC;
+    color: #8A1C26;
+}
+
+.badge-warning {
+    background: #FBF1D8;
+    color: #8A6500;
+}
+
+.badge-info {
+    background: #E4EFFE;
+    color: #144C9C;
+}
+
+/* --------------------------------------------------------------------------
+   16. STATS GRID & STAT CARDS
+   -------------------------------------------------------------------------- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.stat-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 22px 20px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.2s ease;
+}
+
+/* Subtle maroon top accent */
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--grad-primary);
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-card .stat-number {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1.1;
+    color: var(--primary);
+}
+
+.stat-card .stat-label {
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+/* --------------------------------------------------------------------------
+   17. IMAGE PREVIEW
+   -------------------------------------------------------------------------- */
+.image-preview {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed var(--border);
+    border-radius: var(--r-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--surface-2);
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-preview .placeholder {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    text-align: center;
+    padding: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   18. RESPONSIVE — DESKTOP (>=769px)
+   The sidebar becomes a fixed, always-visible column and the content shifts
+   right. The hamburger toggle is hidden. Matches existing JS breakpoint (768).
+   -------------------------------------------------------------------------- */
+@media (min-width: 769px) {
+    .admin-sidebar {
+        transform: translateX(0);
+        box-shadow: none;
+    }
+
+    .admin-content {
+        margin-left: var(--sidebar-w);
+    }
+
+    .admin-topbar {
+        padding: 14px 28px;
+    }
+
+    .admin-topbar .toggle-sidebar {
+        display: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   19. RESPONSIVE — SMALL SCREENS
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .stat-card .stat-number {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-topbar {
+        padding: 12px 14px;
+        gap: 10px;
+    }
+
+    .admin-topbar h3 {
+        font-size: 1.02rem;
+    }
+
+    /* Hide the welcome text on very small screens to save room */
+    .admin-topbar .admin-user span {
+        display: none;
+    }
+}
