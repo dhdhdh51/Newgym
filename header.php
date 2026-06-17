@@ -98,8 +98,8 @@ $phoneNumber = $allSettings['phone_number'] ?? '';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Main Stylesheet (auto cache-busted on change) -->
+    <link rel="stylesheet" href="assets/css/style.css?v=<?php echo @filemtime(__DIR__ . '/assets/css/style.css'); ?>">
     
     <!-- Schema.org JSON-LD -->
     <?php if ($schemaJson): ?>

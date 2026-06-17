@@ -840,19 +840,24 @@ body.nav-open {
 
 .trainer-photo,
 .trainer-photo-placeholder {
+    position: relative;
     aspect-ratio: 4 / 5;
     width: 100%;
-    object-fit: cover;
     overflow: hidden;
 }
 
-.trainer-card:hover .trainer-photo,
-.trainer-card-detailed:hover .trainer-photo {
-    transform: scale(1.05);
+/* Inner image fills the fixed-ratio wrapper */
+.trainer-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s ease;
 }
 
-.trainer-photo {
-    transition: transform .4s ease;
+.trainer-card:hover .trainer-photo img,
+.trainer-card-detailed:hover .trainer-photo img {
+    transform: scale(1.05);
 }
 
 .trainer-photo-placeholder {
@@ -943,7 +948,14 @@ body.nav-open {
 .class-image {
     aspect-ratio: 16 / 10;
     width: 100%;
+    overflow: hidden;
+}
+
+.class-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .class-info {
@@ -1018,6 +1030,14 @@ body.nav-open {
     height: 100%;
     object-fit: cover;
     transition: transform .4s ease;
+}
+
+/* Image is wrapped in an <a class="gallery-lightbox"> — make it fill the square */
+.gallery-item > a,
+.gallery-lightbox {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .gallery-item:hover img {
@@ -1708,7 +1728,25 @@ textarea:user-invalid {
 .blog-card-image {
     aspect-ratio: 16 / 9;
     width: 100%;
+    overflow: hidden;
+}
+
+.blog-card-image a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.blog-card-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: block;
+    transition: transform .4s ease;
+}
+
+.blog-card:hover .blog-card-image img {
+    transform: scale(1.05);
 }
 
 .blog-card-content {
@@ -1801,6 +1839,13 @@ textarea:user-invalid {
     border-radius: var(--r-lg);
     margin-block: 22px;
     box-shadow: var(--sh-sm);
+    overflow: hidden;
+}
+
+.blog-post-image img {
+    width: 100%;
+    display: block;
+    border-radius: var(--r-lg);
 }
 
 .blog-post-content {

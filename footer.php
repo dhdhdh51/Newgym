@@ -118,8 +118,8 @@ $customFooterScripts = $footerSeo['custom_footer_scripts'] ?? '';
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- Main JavaScript -->
-    <script src="assets/js/main.js"></script>
+    <!-- Main JavaScript (auto cache-busted on change) -->
+    <script src="assets/js/main.js?v=<?php echo @filemtime(__DIR__ . '/assets/js/main.js'); ?>"></script>
 
     <!-- Custom Footer Scripts -->
     <?php if ($customFooterScripts): ?>
