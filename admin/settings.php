@@ -85,14 +85,20 @@ include 'includes/admin-header.php';
         <div class="form-group">
             <label for="logo">Logo (Upload new to replace)</label>
             <?php if (!empty($settings['logo'])): ?>
-                <p style="margin-bottom:5px;"><small>Current: <?php echo e($settings['logo']); ?></small></p>
+                <div style="margin-bottom:10px;">
+                    <img src="../<?php echo e($settings['logo']); ?>" alt="Current logo" style="max-height:60px;border-radius:8px;border:1px solid var(--border);background:#fff;padding:6px;display:block;margin-bottom:5px;">
+                    <small style="color:var(--text-muted);">Current: <?php echo e($settings['logo']); ?></small>
+                </div>
             <?php endif; ?>
             <input type="file" id="logo" name="logo" accept="image/jpeg,image/png,image/webp">
         </div>
         <div class="form-group">
             <label for="favicon">Favicon (Upload new to replace)</label>
             <?php if (!empty($settings['favicon'])): ?>
-                <p style="margin-bottom:5px;"><small>Current: <?php echo e($settings['favicon']); ?></small></p>
+                <div style="margin-bottom:10px;">
+                    <img src="../<?php echo e($settings['favicon']); ?>" alt="Current favicon" style="width:40px;height:40px;object-fit:contain;border-radius:8px;border:1px solid var(--border);background:#fff;padding:4px;display:block;margin-bottom:5px;">
+                    <small style="color:var(--text-muted);">Current: <?php echo e($settings['favicon']); ?></small>
+                </div>
             <?php endif; ?>
             <input type="file" id="favicon" name="favicon" accept="image/jpeg,image/png,image/webp">
         </div>
@@ -112,9 +118,13 @@ include 'includes/admin-header.php';
         <div class="form-group">
             <label for="hero_image">Hero Background Image</label>
             <?php if (!empty($settings['hero_image'])): ?>
-                <p style="margin-bottom:5px;"><small>Current: <?php echo e($settings['hero_image']); ?></small></p>
+                <div style="margin-bottom:10px;">
+                    <img src="../<?php echo e($settings['hero_image']); ?>" alt="Current hero image" style="max-width:280px;width:100%;border-radius:10px;border:1px solid var(--border);display:block;margin-bottom:5px;">
+                    <small style="color:var(--text-muted);">Current: <?php echo e($settings['hero_image']); ?></small>
+                </div>
             <?php endif; ?>
             <input type="file" id="hero_image" name="hero_image" accept="image/jpeg,image/png,image/webp">
+            <small style="display:block;margin-top:6px;color:var(--text-muted);">Recommended: wide landscape image (e.g. 1920&times;1080), JPG/PNG/WebP, under 2&nbsp;MB. A dark overlay is applied automatically for text readability.</small>
         </div>
     </div>
 

@@ -78,7 +78,7 @@ include 'header.php';
 ?>
 
 <!-- Hero Section -->
-<section class="hero-section" style="background-image: url('<?php echo e($heroImage); ?>');">
+<section class="hero-section"<?php if ($heroImage): ?> style="background-image: url('<?php echo e($heroImage); ?>');"<?php endif; ?>>
     <div class="hero-overlay"></div>
     <div class="container">
         <div class="hero-content" data-animate="fadeInUp">

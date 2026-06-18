@@ -464,6 +464,7 @@ body.nav-open {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #0B0F14;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -475,7 +476,7 @@ body.nav-open {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(11, 15, 20, .9), rgba(17, 24, 39, .74));
+    background: linear-gradient(135deg, rgba(11, 15, 20, .8), rgba(17, 24, 39, .62));
     z-index: 1;
 }
 
