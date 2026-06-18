@@ -48,7 +48,7 @@ $gymName = getSetting('gym_name') ?? 'Gym Admin';
     <!-- Main Content -->
     <div class="admin-content">
         <div class="admin-topbar">
-            <button class="toggle-sidebar" onclick="document.getElementById('adminSidebar').classList.toggle('active')">
+            <button class="toggle-sidebar" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
             <h3><?php echo e($pageTitle ?? 'Admin Panel'); ?></h3>

@@ -7,14 +7,31 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('adminSidebar');
     const content = document.querySelector('.admin-content');
-    
-    if (content) {
-        content.addEventListener('click', function() {
+    const toggleBtn = document.querySelector('.toggle-sidebar');
+
+    if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            sidebar.classList.toggle('active');
+        });
+    }
+
+    if (content && sidebar) {
+        // Close the drawer when tapping the main content (but not the toggle/topbar)
+        content.addEventListener('click', function(e) {
+            if (e.target.closest('.toggle-sidebar')) return;
             if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
                 sidebar.classList.remove('active');
             }
         });
     }
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sidebar && sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+    });
 });
 
 // Confirm delete actions
