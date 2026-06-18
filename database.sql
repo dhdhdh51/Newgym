@@ -43,6 +43,7 @@ INSERT INTO `site_settings` (`setting_key`, `setting_value`) VALUES
 ('hero_heading', 'Build Your Dream Body With Expert Training'),
 ('hero_subheading', 'Join the most premium fitness community in your city. State-of-the-art equipment, certified trainers, and a results-driven approach to help you achieve your fitness goals.'),
 ('hero_image', 'assets/images/hero-bg.jpg'),
+('hero_image_fit', 'cover'),
 ('about_content', 'Iron Pulse Fitness is more than just a gym - it is a community dedicated to helping you achieve your fitness goals. Founded in 2015, we have helped over 5000 members transform their bodies and lives. Our 10,000 sq ft facility features cutting-edge equipment from Life Fitness and Hammer Strength, dedicated zones for cardio, strength training, functional fitness, and group classes. Whether you are a beginner taking your first steps toward fitness or an experienced athlete looking to push your limits, our team of certified trainers is here to guide you every step of the way.'),
 ('primary_color', '#22C55E'),
 ('secondary_color', '#111827'),

@@ -54,6 +54,7 @@ $allSettings = getAllSettings();
 $heroHeading = $allSettings['hero_heading'] ?? 'Build Your Dream Body With Expert Training';
 $heroSubheading = $allSettings['hero_subheading'] ?? '';
 $heroImage = $allSettings['hero_image'] ?? '';
+$heroFit = (($allSettings['hero_image_fit'] ?? 'cover') === 'contain') ? 'contain' : 'cover';
 $aboutContent = $allSettings['about_content'] ?? '';
 $services = json_decode($allSettings['services'] ?? '[]', true) ?: [];
 $faqs = json_decode($allSettings['faqs'] ?? '[]', true) ?: [];
@@ -78,7 +79,7 @@ include 'header.php';
 ?>
 
 <!-- Hero Section -->
-<section class="hero-section"<?php if ($heroImage): ?> style="background-image: url('<?php echo e($heroImage); ?>');"<?php endif; ?>>
+<section class="hero-section"<?php if ($heroImage): ?> style="background-image: url('<?php echo e($heroImage); ?>'); background-size: <?php echo $heroFit; ?>;"<?php endif; ?>>
     <div class="hero-overlay"></div>
     <div class="container">
         <div class="hero-content" data-animate="fadeInUp">

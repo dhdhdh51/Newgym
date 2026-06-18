@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'business_hours', 'instagram_link', 'facebook_link', 'youtube_link',
                 'footer_text', 'google_analytics', 'search_console', 'facebook_pixel',
                 'default_meta_title', 'default_meta_description', 'default_meta_keywords',
-                'services', 'faqs'
+                'services', 'faqs', 'hero_image_fit'
             ];
 
             $stmt = $pdo->prepare("INSERT INTO site_settings (setting_key, setting_value) VALUES (:key, :value) ON DUPLICATE KEY UPDATE setting_value = :value2");
@@ -125,6 +125,15 @@ include 'includes/admin-header.php';
             <?php endif; ?>
             <input type="file" id="hero_image" name="hero_image" accept="image/jpeg,image/png,image/webp">
             <small style="display:block;margin-top:6px;color:var(--text-muted);">Recommended: wide landscape image (e.g. 1920&times;1080), JPG/PNG/WebP, under 2&nbsp;MB. A dark overlay is applied automatically for text readability.</small>
+        </div>
+        <div class="form-group">
+            <label for="hero_image_fit">Hero Image Fit</label>
+            <?php $heroFitVal = $settings['hero_image_fit'] ?? 'cover'; ?>
+            <select id="hero_image_fit" name="hero_image_fit">
+                <option value="cover" <?php echo $heroFitVal === 'cover' ? 'selected' : ''; ?>>Fill area (recommended &mdash; auto-fits, may crop edges)</option>
+                <option value="contain" <?php echo $heroFitVal === 'contain' ? 'selected' : ''; ?>>Fit whole image (shows full image, no crop)</option>
+            </select>
+            <small style="display:block;margin-top:6px;color:var(--text-muted);">&quot;Fill area&quot; scales the image to cover the hero automatically. &quot;Fit whole image&quot; shows the entire image without cropping.</small>
         </div>
     </div>
 
